@@ -1,0 +1,13 @@
+region = "us-east-1"
+
+tags = {
+  Project     = "not-so-simple-ecommerce"
+  Environment = "production"
+}
+
+assume_role = {
+  arn         = ""
+  external_id = ""
+}
+
+remote_backend = ""

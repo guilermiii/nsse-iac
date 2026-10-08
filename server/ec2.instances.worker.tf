@@ -1,0 +1,35 @@
+module "ec2_worker_instances" {
+  source = "./modules/ec2"
+
+  vpc_zone_identifier    = data.aws_subnets.private_subnets.ids
+  key_name               = var.ec2_resources.key_pair_name
+  image_id               = data.aws_ami.this.image_id
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  instance_profile_name  = aws_iam_instance_profile.instance_profile.name
+  launch_template = {
+    name                                 = var.launch_template_worker.name
+    disable_api_stop                     = var.launch_template_worker.disable_api_stop
+    disable_api_termination              = var.launch_template_worker.disable_api_termination
+    instance_type                        = var.launch_template_worker.instance_type
+    instance_initiated_shutdown_behavior = var.launch_template_worker.instance_initiated_shutdown_behavior
+    ebs = {
+      volume_size           = var.launch_template_worker.ebs.volume_size
+      delete_on_termination = var.launch_template_worker.ebs.delete_on_termination
+    }
+  }
+
+  auto_scaling_group = {
+    name                      = var.auto_scaling_group_worker.name
+    max_size                  = var.auto_scaling_group_worker.max_size
+    min_size                  = var.auto_scaling_group_worker.min_size
+    desired_capacity          = var.auto_scaling_group_worker.desired_capacity
+    health_check_grace_period = var.auto_scaling_group_worker.health_check_grace_period
+    health_check_type         = var.auto_scaling_group_worker.health_check_type
+    instance_maintenance_policy = {
+      min_healthy_percentage = var.auto_scaling_group_worker.instance_maintenance_policy.min_healthy_percentage
+      max_healthy_percentage = var.auto_scaling_group_worker.instance_maintenance_policy.max_healthy_percentage
+    }
+  }
+
+  tags = var.tags
+}

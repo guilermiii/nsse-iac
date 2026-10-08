@@ -1,0 +1,48 @@
+region = "us-east-1"
+
+tags = {
+  Project     = "not-so-simple-ecommerce"
+  Environment = "production"
+}
+
+assume_role = {
+  arn         = ""
+  external_id = ""
+}
+
+vpc = {
+  cidr_block               = "10.0.0.0/24"
+  name                     = "nsse-vpc"
+  internet_gateway_name    = "nsse-internet-gateway"
+  public_route_table_name  = "public-route-table"
+  private_route_table_name = "private-route-table"
+  eip_nat_gateway_name     = "nat-gateway-eip"
+  public_subnets = [
+    {
+      name                    = "public-subnet-us-east-1a"
+      cidr_block              = "10.0.0.0/27"
+      availability_zone       = "us-east-1a"
+      map_public_ip_on_launch = true
+    },
+    {
+      name                    = "public-subnet-us-east-1b"
+      cidr_block              = "10.0.0.64/27"
+      availability_zone       = "us-east-1b"
+      map_public_ip_on_launch = true
+    }
+  ]
+  private_subnets = [
+    {
+      name                    = "private-subnet-us-east-1a"
+      cidr_block              = "10.0.0.32/27"
+      availability_zone       = "us-east-1a"
+      map_public_ip_on_launch = false
+    },
+    {
+      name                    = "private-subnet-us-east-1b"
+      cidr_block              = "10.0.0.96/27"
+      availability_zone       = "us-east-1b"
+      map_public_ip_on_launch = false
+    }
+  ]
+}

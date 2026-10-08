@@ -1,0 +1,68 @@
+region = "us-east-1"
+
+tags = {
+    project = "nsse-project"
+    environment = "production"
+}
+
+assume_role = {
+    arn = ""
+    external_id = ""
+}
+
+ec2_resources = {
+    key_pair_name = "nsse-production-key-pair"
+    instance_role = "nsse-production-instance-role"
+    instance_profile = "nsse-production-instance-profile"
+    ssh_security_group = "allow-ssh"
+}
+
+launch_template_control_plane = {
+    name = "nsse-production-debian-control-plane-lt"
+    instance_type = "t3.micro"
+    disable_api_stop = true
+    disable_api_termination = true
+    instance_initiated_shutdown_behavior = "terminate"
+    ebs = {
+        volume_size = 20
+        delete_on_termination = true
+    }
+}
+
+auto_scaling_group_control_plane = {
+    name = "nsse-production-control-plane-asg"
+    max_size = 1
+    min_size = 1
+    desired_capacity = 1
+    health_check_grace_period = 300
+    health_check_type = "EC2"
+    instance_maintenance_policy = {
+        min_healthy_percentage = 100
+        max_healthy_percentage = 200
+    }
+}
+
+launch_template_worker = {
+    name = "nsse-production-debian-worker-lt"
+    instance_type = "t3.micro"
+    disable_api_stop = true
+    disable_api_termination = true
+    instance_initiated_shutdown_behavior = "terminate"
+    ebs = {
+        volume_size = 20
+        delete_on_termination = true
+    }
+}
+
+auto_scaling_group_worker = {
+    name = "nsse-production-worker-asg"
+    max_size = 2
+    min_size = 1
+    desired_capacity = 1
+    health_check_grace_period = 300
+    health_check_type = "EC2"
+    instance_maintenance_policy = {
+        min_healthy_percentage = 100
+        max_healthy_percentage = 200
+    }
+}
