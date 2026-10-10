@@ -13,8 +13,10 @@ data "aws_iam_policy_document" "assume_role" {
     # instancias ec2 podem assumir essa role
   }
 }
+
 # cria um instance profile que é necessário para anexar a role a uma instancia EC2
 # ec2 não usa a role diretamente, o instance profile encapsula a role para a EC2 usar.
+
 resource "aws_iam_instance_profile" "instance_profile" {
   name = var.ec2_resources.instance_profile
   role = aws_iam_role.role.name

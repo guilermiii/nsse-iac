@@ -1,11 +1,13 @@
 resource "aws_launch_template" "this" {
   name = var.launch_template.name
+  
   # pra ficar mais organizado, deixar os parametros"soltos" que são importantes, acima dos blocos
   instance_type = var.launch_template.instance_type
+  
   # proteção para que não aconteça de alguem parar ou terminar uma instancia acidentalmente.
   disable_api_stop        = var.launch_template.disable_api_stop
   disable_api_termination = var.launch_template.disable_api_termination
-  #key_name                = aws_key_pair.this.key_name
+# key_name                = aws_key_pair.this.key_name
   key_name                             = var.key_name
   image_id                             = var.image_id
   instance_initiated_shutdown_behavior = var.launch_template.instance_initiated_shutdown_behavior
