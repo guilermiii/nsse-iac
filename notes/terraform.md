@@ -9,3 +9,5 @@ então a ordem foi:
 
 VPC -> Internet Gateway -> Subnets publicas  -> tabela de roteamento publica
 ou VPC -> Nat Gateway - Subnets privadas -> tabelas de roteamento privadas
+
+na hora de criar a parte de computação, primeiramente criar com o provider TLS as keypars para utilizar e acessar, caso vá utilizar desta abordagem.
