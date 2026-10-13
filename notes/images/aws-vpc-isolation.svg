@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+    
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <linearGradient id="awsRed" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#EF4444"/>
+            <stop offset="100%" stop-color="#B91C1C"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF9900" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+        </marker>
+    </defs>
+
+    <rect width="900" height="480" fill="#F8FAFC" rx="12"/>
+    <text x="450" y="45" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">VPC: Fronteira Lógica e Resolução de Nomes na AWS</text>
+    <text x="450" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Isolamento de rede e recursos fundamentais da nuvem privada virtual</text>
+
+    <!-- Cloud Outer -->
+    <rect x="50" y="100" width="800" height="350" rx="12" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6,6"/>
+    <text x="75" y="130" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#475569">AWS Cloud (Região us-east-1)</text>
+
+    <!-- VPC Boundary -->
+    <rect x="90" y="150" width="720" height="270" rx="10" fill="#FFFFFF" stroke="#FF9900" stroke-width="2.5" filter="url(#shadow)"/>
+    <rect x="90" y="150" width="720" height="40" rx="10" fill="#FEF3C7"/>
+    <text x="120" y="175" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#92400E">Virtual Private Cloud (VPC) - nsse-vpc (10.0.0.0/24)</text>
+
+    <!-- Features -->
+    <rect x="120" y="210" width="200" height="90" rx="6" fill="#F0FDF4" stroke="#16A34A"/>
+    <text x="220" y="235" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#15803D" text-anchor="middle">Isolamento Lógico</text>
+    <text x="220" y="255" font-family="system-ui, sans-serif" font-size="11" fill="#166534" text-anchor="middle">Espaço de endereçamento</text>
+    <text x="220" y="275" font-family="system-ui, sans-serif" font-size="11" fill="#166534" text-anchor="middle">privado e protegido</text>
+
+    <rect x="350" y="210" width="200" height="90" rx="6" fill="#EFF6FF" stroke="#3B82F6"/>
+    <text x="450" y="235" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8" text-anchor="middle">Resolução DNS Nativa</text>
+    <text x="450" y="255" font-family="system-ui, sans-serif" font-size="11" fill="#1E40AF" text-anchor="middle">AmazonProvidedDNS (.2)</text>
+    <text x="450" y="275" font-family="system-ui, sans-serif" font-size="11" fill="#1E40AF" text-anchor="middle">DNS Hostnames ativos</text>
+
+    <rect x="580" y="210" width="200" height="90" rx="6" fill="#FAF5FF" stroke="#8B5CF6"/>
+    <text x="680" y="235" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6D28D9" text-anchor="middle">Roteador Virtual</text>
+    <text x="680" y="255" font-family="system-ui, sans-serif" font-size="11" fill="#5B21B6" text-anchor="middle">Interconecta subnets</text>
+    <text x="680" y="275" font-family="system-ui, sans-serif" font-size="11" fill="#5B21B6" text-anchor="middle">via tabelas de rota</text>
+
+    <rect x="120" y="325" width="660" height="70" rx="6" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="450" y="350" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">Controle Total de Acesso por Camadas</text>
+    <text x="450" y="375" font-family="system-ui, sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Network Access Control Lists (NACLs) a nível de sub-rede + Security Groups (Stateful) a nível de interface de rede EC2.</text>
+</svg>

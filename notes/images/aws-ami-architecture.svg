@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+    
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <linearGradient id="awsRed" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#EF4444"/>
+            <stop offset="100%" stop-color="#B91C1C"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF9900" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" />
+        </marker>
+    </defs>
+
+    <rect width="900" height="480" fill="#F8FAFC" rx="12"/>
+    <text x="450" y="45" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">AMI (Amazon Machine Image): Anatomia e Busca Dinâmica</text>
+    <text x="450" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Como o Terraform localiza a imagem oficial do Debian 12 dinamicamente</text>
+
+    <!-- AMI Structure -->
+    <rect x="60" y="110" width="360" height="330" rx="10" fill="#FFFFFF" stroke="#EC7211" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="60" y="110" width="360" height="40" rx="10" fill="#FFEDD5"/>
+    <text x="240" y="135" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#C2410C" text-anchor="middle">Anatomia de uma AMI</text>
+
+    <rect x="85" y="170" width="310" height="60" rx="6" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="100" y="195" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">1. Snapshot EBS do Volume Raiz</text>
+    <text x="100" y="215" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Sistema operacional instalado, kernel e pacotes base</text>
+
+    <rect x="85" y="250" width="310" height="60" rx="6" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="100" y="275" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">2. Mapeamento de Dispositivos (Block Device)</text>
+    <text x="100" y="295" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Associação de volumes /dev/xvda ou /dev/sda1</text>
+
+    <rect x="85" y="330" width="310" height="60" rx="6" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="100" y="355" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">3. Permissões de Inicialização</text>
+    <text x="100" y="375" font-family="system-ui, sans-serif" font-size="11" fill="#64748B">Pública (Community/AWS) ou privada da conta</text>
+
+    <!-- Terraform Data Source -->
+    <rect x="470" y="110" width="370" height="330" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="470" y="110" width="370" height="40" rx="10" fill="#E0F2FE"/>
+    <text x="655" y="135" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#0369A1" text-anchor="middle">Data Source no Projeto (Debian 12)</text>
+
+    <rect x="495" y="170" width="320" height="150" rx="6" fill="#1E293B"/>
+    <text x="510" y="195" font-family="monospace" font-size="11" fill="#38BDF8">data "aws_ami" "this" &#123;</text>
+    <text x="525" y="215" font-family="monospace" font-size="11" fill="#94A3B8">most_recent = true</text>
+    <text x="525" y="235" font-family="monospace" font-size="11" fill="#FCD34D">owners = ["136113465424"]</text>
+    <text x="525" y="255" font-family="monospace" font-size="11" fill="#94A3B8">filter &#123;</text>
+    <text x="540" y="275" font-family="monospace" font-size="11" fill="#4ADE80">name = "name"</text>
+    <text x="540" y="295" font-family="monospace" font-size="11" fill="#FCD34D">values = ["debian-12-amd64-*"]</text>
+    <text x="525" y="310" font-family="monospace" font-size="11" fill="#94A3B8">&#125;</text>
+    <text x="510" y="325" font-family="monospace" font-size="11" fill="#38BDF8">&#125;</text>
+
+    <rect x="495" y="340" width="320" height="75" rx="6" fill="#F0FDF4" stroke="#16A34A"/>
+    <text x="655" y="365" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#15803D" text-anchor="middle">Vantagem da Busca Dinâmica:</text>
+    <text x="655" y="385" font-family="system-ui, sans-serif" font-size="11" fill="#166534" text-anchor="middle">Não fixa IDs estáticos (ami-xxxx) que mudam</text>
+    <text x="655" y="403" font-family="system-ui, sans-serif" font-size="11" fill="#166534" text-anchor="middle">entre regiões da AWS e atualizações de versão.</text>
+</svg>
