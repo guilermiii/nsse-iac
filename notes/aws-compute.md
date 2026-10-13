@@ -20,5 +20,12 @@ Dessa maneira nao temos exposicao de secrets
 Instance Role
 A insancia recebe uma única role, essa role vai conter in-line-policies, permissões específicas para a instancia (ex: acessar um serviço de menssageria). 
 
+aws systems manager
+O AWS Systems Manager (SSM) é a central de operações e gerenciamento de servidores da AWS. Em termos práticos, ele permite acessar o terminal, rodar comandos em lote, aplicar patches de segurança e guardar variáveis de ambiente em centenas de máquinas sem precisar abrir portas de rede ou gerenciar chaves SSH (.pem)
+é uma forma mais segura, náo precisamos abrir portas no firewall, precisamos apenas instalar um agent na instancia ec2
+Como temos um launch-template acaba sendo mais simples, utilizando o parametro user_data (passamos um caminho para um script ou um script diretamente)conseguimos garantir que toda instancia criada tenha o agent do ssm instalado.
+
+
+
 
 
