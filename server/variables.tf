@@ -21,10 +21,6 @@ variable "assume_role" {
     arn         = string
     external_id = string
   })
-  default    =  {
-      arn    = "arn:aws:iam::034797416371:role/terraform-role"
-      external_id = "f1729d21-46d1-454c-829b-293de277e64d"
-    }
 }
 
 variable "ec2_resources" {
