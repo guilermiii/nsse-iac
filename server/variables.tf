@@ -2,7 +2,6 @@
 variable "region" {
   type        = string
   description = "regiao da aws"
-  default     = "us-east-1"
 }
 
 variable "tags" {
@@ -10,10 +9,6 @@ variable "tags" {
     project     = string
     environment = string
   })
-  default = {
-    project     = "nsse-project"
-    environment = "production"
-  }
 }
 
 variable "assume_role" {
@@ -30,12 +25,6 @@ variable "ec2_resources" {
     instance_role      = string,
     ssh_security_group = string
   })
-  default = {
-    key_pair_name      = "nsse-production-key-pair"
-    instance_role      = "nsse-production-instance-role"
-    instance_profile   = "nsse-production-instance-profile"
-    ssh_security_group = "allow-ssh"
-  }
 }
 
 variable "launch_template_control_plane" {
@@ -50,17 +39,6 @@ variable "launch_template_control_plane" {
       delete_on_termination = bool
     })
   })
-  default = {
-    name                                 = "nsse-production-debian-control-plane-lt"
-    instance_type                        = "t3.micro"
-    disable_api_stop                     = true
-    disable_api_termination              = true
-    instance_initiated_shutdown_behavior = "terminate"
-    ebs = {
-      volume_size           = 20
-      delete_on_termination = true
-    }
-  }
 }
 
 variable "auto_scaling_group_control_plane" {
@@ -76,18 +54,6 @@ variable "auto_scaling_group_control_plane" {
       max_healthy_percentage = number
     })
   })
-  default = {
-    name                      = "nsse-production-control-plane-asg"
-    max_size                  = 1
-    min_size                  = 1
-    desired_capacity          = 1
-    health_check_grace_period = 180
-    health_check_type         = "EC2"
-    instance_maintenance_policy = {
-      min_healthy_percentage = 100
-      max_healthy_percentage = 100
-    }
-  }
 }
 
 variable "launch_template_worker" {
@@ -102,17 +68,6 @@ variable "launch_template_worker" {
       delete_on_termination = bool
     })
   })
-  default = {
-    name                                 = "nsse-production-debian-worker-lt"
-    instance_type                        = "t3.micro"
-    disable_api_stop                     = true
-    disable_api_termination              = true
-    instance_initiated_shutdown_behavior = "terminate"
-    ebs = {
-      volume_size           = 20
-      delete_on_termination = true
-    }
-  }
 }
 
 variable "auto_scaling_group_worker" {
@@ -128,16 +83,5 @@ variable "auto_scaling_group_worker" {
       max_healthy_percentage = number
     })
   })
-  default = {
-    name                      = "nsse-production-worker-asg"
-    max_size                  = 1
-    min_size                  = 1
-    desired_capacity          = 1
-    health_check_grace_period = 180
-    health_check_type         = "EC2"
-    instance_maintenance_policy = {
-      min_healthy_percentage = 100
-      max_healthy_percentage = 100
-    }
-  }
+
 }
