@@ -9,7 +9,7 @@ module "ec2_control_plane_instances" {
     instance_initiated_shutdown_behavior = var.launch_template_control_plane.instance_initiated_shutdown_behavior
     key_name                             = aws_key_pair.this.key_name
     image_id                             = data.aws_ami.this.image_id
-    vpc_security_group_ids               = [aws_security_group.allow_ssh.id]
+    vpc_security_group_ids               = [aws_security_group.control_plane.id]
     instance_profile_name                = aws_iam_instance_profile.instance_profile.name
     user_data                            = filebase64("./cli/control-plane-user-data.sh")
 

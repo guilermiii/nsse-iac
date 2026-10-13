@@ -23,7 +23,8 @@ variable "ec2_resources" {
     key_pair_name      = string,
     instance_profile   = string,
     instance_role      = string,
-    ssh_security_group = string
+    worker_security_group = string
+    control_plane_security_group = string
   })
 }
 
