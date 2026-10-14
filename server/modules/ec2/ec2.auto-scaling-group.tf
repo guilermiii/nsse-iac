@@ -30,3 +30,9 @@ resource "aws_autoscaling_group" "this" {
     propagate_at_launch = false
   }
 }
+ tag {
+    key                 = "Patch Group"
+    value               = "Production"
+    propagate_at_launch = true
+  }
+
