@@ -29,10 +29,11 @@ resource "aws_autoscaling_group" "this" {
     value               = var.tags.project
     propagate_at_launch = false
   }
-}
- tag {
+  tag {
     key                 = "Patch Group"
     value               = "Production"
     propagate_at_launch = true
   }
+}
+
 

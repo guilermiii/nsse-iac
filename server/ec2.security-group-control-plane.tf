@@ -9,7 +9,7 @@ resource "aws_security_group" "control_plane" {
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4-control-plane" {
   security_group_id = aws_security_group.control_plane.id
-  cidr_ipv4         = "0.0.0.0/0" 
+  cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
