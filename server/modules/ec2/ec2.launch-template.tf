@@ -21,9 +21,4 @@ resource "aws_launch_template" "this" {
       delete_on_termination = var.launch_template.ebs.delete_on_termination
     }
   }
-  tag_specifications {
-    resource_type = "instance"
-
-    tags = var.tags
-  }
 }

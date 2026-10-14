@@ -1,15 +1,3 @@
-
-variable "tags" {
-  type = object({
-    project     = string
-    environment = string
-  })
-  default = {
-    project     = "nsse-project"
-    environment = "production"
-  }
-}
-
 variable "launch_template" {
   type = object({
     name                                 = string
@@ -22,8 +10,6 @@ variable "launch_template" {
     image_id                             = string
     key_name                             = string
     vpc_security_group_ids               = list(string)
-
-
     ebs = object({
       volume_size           = number
       delete_on_termination = bool
@@ -44,6 +30,7 @@ variable "auto_scaling_group" {
       min_healthy_percentage = number
       max_healthy_percentage = number
     })
+    instance_tags = map(string)
   })
 }
 

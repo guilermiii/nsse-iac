@@ -10,29 +10,20 @@ resource "aws_autoscaling_group" "this" {
     name    = aws_launch_template.this.name
     version = "$Latest"
   }
-
-
-  #
+  
   instance_maintenance_policy {
     min_healthy_percentage = var.auto_scaling_group.instance_maintenance_policy.min_healthy_percentage
     max_healthy_percentage = var.auto_scaling_group.instance_maintenance_policy.max_healthy_percentage
   }
 
-  tag {
-    key                 = "environment"
-    value               = var.tags.environment
-    propagate_at_launch = true
-  }
-
-  tag {
-    key                 = "project"
-    value               = var.tags.project
-    propagate_at_launch = false
-  }
-  tag {
-    key                 = "Patch Group"
-    value               = "Production"
-    propagate_at_launch = true
+  dynamic "tag" {
+    for_each = var.auto_scaling_group.instance_tags
+    
+    content {
+      key = tag.key
+      value = tag.value
+      propagate_at_launch = true
+    }
   }
 }
 

@@ -6,8 +6,8 @@ variable "region" {
 
 variable "tags" {
   type = object({
-    project     = string
-    environment = string
+    Project     = string
+    Environment = string
   })
 }
 
@@ -54,6 +54,7 @@ variable "auto_scaling_group_control_plane" {
       min_healthy_percentage = number
       max_healthy_percentage = number
     })
+    instance_tags = map(string)
   })
 }
 
@@ -83,6 +84,7 @@ variable "auto_scaling_group_worker" {
       min_healthy_percentage = number
       max_healthy_percentage = number
     })
+    instance_tags = map(string)
   })
 
 }

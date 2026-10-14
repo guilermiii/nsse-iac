@@ -32,7 +32,6 @@ module "ec2_control_plane_instances" {
       min_healthy_percentage = var.auto_scaling_group_control_plane.instance_maintenance_policy.min_healthy_percentage
       max_healthy_percentage = var.auto_scaling_group_control_plane.instance_maintenance_policy.max_healthy_percentage
     }
+    instance_tags = var.auto_scaling_group_control_plane.instance_tags
   }
-
-  tags = var.tags
 }

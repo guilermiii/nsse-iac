@@ -32,7 +32,6 @@ module "ec2_worker_instances" {
       min_healthy_percentage = var.auto_scaling_group_worker.instance_maintenance_policy.min_healthy_percentage
       max_healthy_percentage = var.auto_scaling_group_worker.instance_maintenance_policy.max_healthy_percentage
     }
+    instance_tags = var.auto_scaling_group_worker.instance_tags
   }
-
-  tags = var.tags
 }
