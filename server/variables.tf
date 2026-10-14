@@ -20,10 +20,10 @@ variable "assume_role" {
 
 variable "ec2_resources" {
   type = object({
-    key_pair_name      = string,
-    instance_profile   = string,
-    instance_role      = string,
-    worker_security_group = string
+    key_pair_name                = string,
+    instance_profile             = string,
+    instance_role                = string,
+    worker_security_group        = string
     control_plane_security_group = string
   })
 }
@@ -85,4 +85,54 @@ variable "auto_scaling_group_worker" {
     })
   })
 
+}
+
+variable "debian_production_patch_baseline" {
+  type = list(object({
+    approve_after_days = number
+    compliance_level   = string
+    patch_filters = list(object({
+      key    = string
+      values = list(string)
+    }))
+  }))
+
+  default = [
+    {
+      approve_after_days = 0
+      compliance_level   = "CRITICAL"
+      patch_filters = [
+        {
+          key    = "PRODUCT"
+          values = ["Debian12"]
+        },
+        {
+          key    = "SECTION"
+          values = ["*"]
+        },
+        {
+          key    = "PRIORITY"
+          values = ["Required", "Important"]
+        }
+      ]
+    },
+    {
+      approve_after_days = 0
+      compliance_level   = "INFORMATIONAL"
+      patch_filters = [
+        {
+          key    = "PRODUCT"
+          values = ["Debian12"]
+        },
+        {
+          key    = "SECTION"
+          values = ["*"]
+        },
+        {
+          key    = "PRIORITY"
+          values = ["Standard"]
+        }
+      ]
+    }
+  ]
 }
