@@ -19,11 +19,16 @@ data "aws_iam_policy_document" "assume_role" {
 
 resource "aws_iam_instance_profile" "instance_profile" {
   name = var.ec2_resources.instance_profile
-  role = aws_iam_role.role.name
+  role = aws_iam_role.instance_role.name
 }
 
 #role
-resource "aws_iam_role" "role" {
+resource "aws_iam_role" "instance_role" {
   name               = var.ec2_resources.instance_role
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "ssm_core" {
+  role       = aws_iam_role.instance_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }

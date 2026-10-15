@@ -12,7 +12,7 @@ variable "tags" {
 }
 
 variable "patch_group" {
-  type = string
+  type    = string
   default = "Production"
 }
 
