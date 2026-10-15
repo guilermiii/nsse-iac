@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 540" width="100%" height="100%">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF9900" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="940" height="540" fill="#F8FAFC" rx="12"/>
+    <text x="470" y="42" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">Fluxo Arquitetural: AWS Systems Manager Patch Management</text>
+    <text x="470" y="68" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Orquestração contínua de conformidade, execução via Run Command e auditoria em nuvem</text>
+
+    <!-- Step 1: Patch Baseline -->
+    <g transform="translate(40, 95)">
+        <rect width="250" height="150" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="250" height="35" rx="10" fill="#E0F2FE"/>
+        <text x="125" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#0369A1" text-anchor="middle">1. Patch Baseline</text>
+        <text x="20" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Regras de Homologação:</text>
+        <text x="20" y="76" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Filtro: SO Debian / Ubuntu / RHEL</text>
+        <text x="20" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Severidade: Critical / Important</text>
+        <text x="20" y="112" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Carência: approve_after_days = X</text>
+        <rect x="20" y="122" width="210" height="18" rx="4" fill="#F0F9FF"/>
+        <text x="125" y="135" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#0284C7" text-anchor="middle">Define O QUE pode ser atualizado</text>
+    </g>
+
+    <!-- Arrow 1 to 2 -->
+    <path d="M 290 170 L 340 170" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 2: Patch Group -->
+    <g transform="translate(345, 95)">
+        <rect width="250" height="150" rx="10" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="250" height="35" rx="10" fill="#EDE9FE"/>
+        <text x="125" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6D28D9" text-anchor="middle">2. Patch Group (Vínculo)</text>
+        <text x="20" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Segregação Granular:</text>
+        <text x="20" y="76" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Tag reservada: "Patch Group"</text>
+        <text x="20" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Vincula o Baseline a uma frota</text>
+        <text x="20" y="112" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Permite anéis (Dev vs Stg vs Prod)</text>
+        <rect x="20" y="122" width="210" height="18" rx="4" fill="#F5F3FF"/>
+        <text x="125" y="135" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#6D28D9" text-anchor="middle">Associa Baseline ao Target Tag</text>
+    </g>
+
+    <!-- Arrow 2 to 3 -->
+    <path d="M 595 170 L 645 170" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 3: State Manager -->
+    <g transform="translate(650, 95)">
+        <rect width="250" height="150" rx="10" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="250" height="35" rx="10" fill="#DCFCE7"/>
+        <text x="125" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#15803D" text-anchor="middle">3. State Manager (Agendamento)</text>
+        <text x="20" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Garantia de Estado:</text>
+        <text x="20" y="76" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Schedule: cron(...) ou rate(...)</text>
+        <text x="20" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Document: AWS-RunPatchBaseline</text>
+        <text x="20" y="112" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Concorrência e tolerância a erros</text>
+        <rect x="20" y="122" width="210" height="18" rx="4" fill="#F0FDF4"/>
+        <text x="125" y="135" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#15803D" text-anchor="middle">Corrige desvios (Drift Correction)</text>
+    </g>
+
+    <!-- Downward Arrow from State Manager to Execution -->
+    <path d="M 775 245 L 775 285 L 610 285" stroke="#10B981" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+
+    <!-- Execution Tier: Run Command & Target Servers -->
+    <g transform="translate(40, 275)">
+        <rect width="560" height="120" rx="10" fill="#FFFFFF" stroke="#FF9900" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="560" height="32" rx="10" fill="#FFEDD5"/>
+        <text x="20" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#C2410C">⚡ 4. Execução Segura via Run Command (Sem Porta 22 / SSH)</text>
+
+        <!-- Sub-box EC2 -->
+        <rect x="20" y="44" width="245" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="30" y="62" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Instâncias EC2 (Subnets Privadas)</text>
+        <text x="30" y="78" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">IAM Instance Profile (SSM Managed Policy)</text>
+        <text x="30" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#0284C7">Agente SSM faz polling outbound via HTTPS</text>
+
+        <!-- Sub-box On-Premise -->
+        <rect x="285" y="44" width="255" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="295" y="62" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Servidores Físicos / On-Premises</text>
+        <text x="295" y="78" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">SSM Hybrid Activations (Cloud Híbrida)</text>
+        <text x="295" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#0284C7">Mesmo baseline e governança unificada</text>
+    </g>
+
+    <!-- Downward Arrow to Logging Tier -->
+    <path d="M 320 395 L 320 425" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="330" y="415" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">Envio de Logs de Execução</text>
+
+    <!-- Logging Tier: CloudWatch & S3 -->
+    <g transform="translate(40, 425)">
+        <rect width="860" height="95" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="860" height="28" rx="10" fill="#F1F5F9"/>
+        <text x="20" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#475569">📊 5. Destino de Logs de Patching e Auditoria de Compliance</text>
+
+        <!-- CloudWatch Box -->
+        <rect x="20" y="38" width="395" height="48" rx="6" fill="#FEF3C7" stroke="#FDE68A"/>
+        <text x="30" y="55" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#B45309">Amazon CloudWatch Logs</text>
+        <text x="30" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#92400E">• Troubleshooting em tempo real, alertas de falhas e retenção curta (dias)</text>
+
+        <!-- S3 Box -->
+        <rect x="445" y="38" width="395" height="48" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+        <text x="455" y="55" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#047857">Amazon S3 Bucket</text>
+        <text x="455" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#065F46">• Arquivamento histórico, conformidade (LGPD/SOC 2/ISO) e custo ultrabaixo</text>
+    </g>
+</svg>

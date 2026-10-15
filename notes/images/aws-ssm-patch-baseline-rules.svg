@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="920" height="480" fill="#F8FAFC" rx="12"/>
+    <text x="460" y="42" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">Ciclo de Vida e Regras de Aprovação no SSM Patch Baseline</text>
+    <text x="460" y="68" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Como o período de carência e os filtros garantem segurança sem quebrar ambientes de produção</text>
+
+    <!-- Step 1: Patch Release -->
+    <g transform="translate(40, 100)">
+        <rect width="180" height="130" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="180" height="32" rx="10" fill="#F1F5F9"/>
+        <text x="90" y="21" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">1. Lançamento Fornecedor</text>
+        <text x="15" y="55" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0F172A">Novo pacote no repositório:</text>
+        <text x="15" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• Debian Security Repo</text>
+        <text x="15" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• CVE corrigida</text>
+        <text x="15" y="112" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#DC2626">Estado: Não Aprovado</text>
+    </g>
+
+    <!-- Arrow 1 to 2 -->
+    <path d="M 220 165 L 255 165" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 2: Auto-approval Delay -->
+    <g transform="translate(260, 100)">
+        <rect width="185" height="130" rx="10" fill="#FFFFFF" stroke="#FF9900" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="185" height="32" rx="10" fill="#FFEDD5"/>
+        <text x="92" y="21" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#C2410C" text-anchor="middle">2. Janela de Carência</text>
+        <text x="15" y="55" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0F172A">approve_after_days = X</text>
+        <text x="15" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• Quarentena protetiva</text>
+        <text x="15" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• Evita patches com regressão</text>
+        <text x="15" y="112" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#D97706">Estado: Em Quarentena</text>
+    </g>
+
+    <!-- Arrow 2 to 3 -->
+    <path d="M 445 165 L 480 165" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 3: Filter Evaluation -->
+    <g transform="translate(485, 100)">
+        <rect width="190" height="130" rx="10" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="190" height="32" rx="10" fill="#EDE9FE"/>
+        <text x="95" y="21" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#6D28D9" text-anchor="middle">3. Avaliação de Filtros</text>
+        <text x="15" y="55" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0F172A">dynamic "patch_filter"</text>
+        <text x="15" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• Key: PRODUCT (Debian 12)</text>
+        <text x="15" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">• Key: SEVERITY (Critical/High)</text>
+        <text x="15" y="112" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">Estado: Em Validação</text>
+    </g>
+
+    <!-- Arrow 3 to 4 -->
+    <path d="M 675 165 L 710 165" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 4: Approved & Compliant -->
+    <g transform="translate(715, 100)">
+        <rect width="165" height="130" rx="10" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="165" height="32" rx="10" fill="#DCFCE7"/>
+        <text x="82" y="21" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#15803D" text-anchor="middle">4. Homologação</text>
+        <text x="12" y="55" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0F172A">Patch Aprovado</text>
+        <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#047857">• Adicionado à baseline</text>
+        <text x="12" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#047857">• Compliance Level atribuído</text>
+        <text x="12" y="112" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#16A34A">Pronto para Instalação</text>
+    </g>
+
+    <!-- Bottom Breakdown Cards -->
+    <g transform="translate(40, 260)">
+        <rect width="405" height="190" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="405" height="35" rx="10" fill="#F1F5F9"/>
+        <text x="20" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#334155">🛡️ Por que adotar Janela de Carência (approve_after_days)?</text>
+        <text x="20" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#0F172A">Risco de regressão:</tspan> Mesmo patches oficiais podem conter bugs ou quebrar binários.</text>
+        <text x="20" y="88" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#0F172A">Tempo de recall:</tspan> Permite que o fornecedor retire um pacote defeituoso antes que ele chegue à sua produção.</text>
+        <text x="20" y="116" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#0F172A">Estratégia por ambiente:</tspan></text>
+        <text x="35" y="136" font-family="system-ui, sans-serif" font-size="10" fill="#0284C7">→ Dev / Homologação: 0 a 2 dias (testes imediatos)</text>
+        <text x="35" y="156" font-family="system-ui, sans-serif" font-size="10" fill="#059669">→ Produção: 7 a 10 dias (estabilidade comprovada)</text>
+    </g>
+
+    <g transform="translate(475, 260)">
+        <rect width="405" height="190" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="405" height="35" rx="10" fill="#F1F5F9"/>
+        <text x="20" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#334155">🎯 Operações: Scan vs. Install no State Manager</text>
+        <text x="20" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#0284C7">Operation = "Scan":</tspan> Apenas audita a frota e compara com a baseline. Não altera pacotes. Gera relatório de conformidade (*Compliance Status*).</text>
+        <text x="20" y="98" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#10B981">Operation = "Install":</tspan> Baixa e instala os patches aprovados. Aplica opção de reinicialização configurada (*RebootOption = "RebootIfNeeded"*).</text>
+        <text x="20" y="138" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• <tspan font-weight="bold" fill="#7C3AED">Boas Práticas de Concorrência:</tspan> Definir <tspan font-family="monospace">max_concurrency = 1</tspan> e <tspan font-family="monospace">max_errors = 0</tspan> evita quedas simultâneas de instâncias em cluster.</text>
+    </g>
+</svg>

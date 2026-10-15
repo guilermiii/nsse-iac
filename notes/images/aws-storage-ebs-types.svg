@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="100%" height="100%">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="920" height="520" fill="#F8FAFC" rx="12"/>
+    <text x="460" y="42" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">Amazon EBS: Tipos de Volumes e Mecanismo de Snapshots</text>
+    <text x="460" y="68" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Categorias de desempenho em disco de bloco e proteção com snapshots incrementais no S3</text>
+
+    <!-- 3 Cards: Volume Types -->
+    <!-- Card 1: General Purpose SSD (gp3) -->
+    <g transform="translate(45, 95)">
+        <rect width="255" height="240" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="255" height="40" rx="10" fill="#E0F2FE"/>
+        <text x="127" y="25" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#0369A1" text-anchor="middle">SSD Uso Geral: gp3 (Padrão)</text>
+
+        <text x="20" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Baseline Gratuito:</text>
+        <text x="20" y="82" font-family="system-ui, sans-serif" font-size="11" fill="#0369A1">• 3.000 IOPS &amp; 125 MB/s inclusos</text>
+        <text x="20" y="102" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Escalabilidade Independente:</text>
+        <text x="20" y="119" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Aumente IOPS/MBps sem aumentar GBs</text>
+        <text x="20" y="139" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Máximos:</text>
+        <text x="20" y="156" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Até 16.000 IOPS e 1.000 MB/s</text>
+
+        <rect x="15" y="180" width="225" height="45" rx="6" fill="#F0F9FF" stroke="#BAE6FD"/>
+        <text x="127" y="198" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0369A1" text-anchor="middle">Aplicação:</text>
+        <text x="127" y="214" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E" text-anchor="middle">Discos de boot SO, ambientes dev/prod comuns</text>
+    </g>
+
+    <!-- Card 2: Provisioned IOPS SSD (io2 Block Express) -->
+    <g transform="translate(332, 95)">
+        <rect width="255" height="240" rx="10" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="255" height="40" rx="10" fill="#EDE9FE"/>
+        <text x="127" y="25" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6D28D9" text-anchor="middle">SSD Crítico: io2 Block Express</text>
+
+        <text x="20" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Performance Extrema:</text>
+        <text x="20" y="82" font-family="system-ui, sans-serif" font-size="11" fill="#6D28D9">• Até 256.000 IOPS &amp; 4.000 MB/s</text>
+        <text x="20" y="102" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Latência Garantida:</text>
+        <text x="20" y="119" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Latência sub-milissegundo sustentada</text>
+        <text x="20" y="139" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Multi-Attach:</text>
+        <text x="20" y="156" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Conecta a até 16 instâncias Nitro na mesma AZ</text>
+
+        <rect x="15" y="180" width="225" height="45" rx="6" fill="#F5F3FF" stroke="#DDD6FE"/>
+        <text x="127" y="198" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#6D28D9" text-anchor="middle">Aplicação:</text>
+        <text x="127" y="214" font-family="system-ui, sans-serif" font-size="10" fill="#5B21B6" text-anchor="middle">Oracle, SAP HANA, SQL Server e clusters RAC</text>
+    </g>
+
+    <!-- Card 3: HDD Volumes (st1 / sc1) -->
+    <g transform="translate(620, 95)">
+        <rect width="255" height="240" rx="10" fill="#FFFFFF" stroke="#64748B" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="255" height="40" rx="10" fill="#F1F5F9"/>
+        <text x="127" y="25" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">HDD Magnético: st1 / sc1</text>
+
+        <text x="20" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Foco em Sequencial:</text>
+        <text x="20" y="82" font-family="system-ui, sans-serif" font-size="11" fill="#334155">• Throughput alto com baixo custo de GB</text>
+        <text x="20" y="102" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Restrição Crítica:</text>
+        <text x="20" y="119" font-family="system-ui, sans-serif" font-size="10" fill="#DC2626">NÃO pode ser volume raiz (Boot)</text>
+        <text x="20" y="139" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Variações:</text>
+        <text x="20" y="156" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">st1 (Throughput Opt) / sc1 (Cold Storage)</text>
+
+        <rect x="15" y="180" width="225" height="45" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="127" y="198" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#334155" text-anchor="middle">Aplicação:</text>
+        <text x="127" y="214" font-family="system-ui, sans-serif" font-size="10" fill="#475569" text-anchor="middle">Big Data, MapReduce, Kafka, ETL e Data Warehouses</text>
+    </g>
+
+    <!-- Bottom Section: Incremental Snapshots to S3 -->
+    <g transform="translate(45, 355)">
+        <rect width="830" height="145" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="830" height="35" rx="10" fill="#ECFDF5"/>
+        <text x="25" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#065F46">📸 Mecanismo de Snapshots EBS: Backup Pontual e Incremental no Amazon S3</text>
+
+        <!-- Block 1: Volume Original -->
+        <rect x="30" y="50" width="210" height="75" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="40" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0F172A">Volume EBS Ativo</text>
+        <text x="40" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Blocos 1 a 4 KB modificados</text>
+        <text x="40" y="106" font-family="system-ui, sans-serif" font-size="10" fill="#0284C7">Snapshots assíncronos (sem parada)</text>
+
+        <!-- Arrow -->
+        <path d="M 250 87 L 315 87" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+        <text x="282" y="78" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#047857" text-anchor="middle">Apenas deltas</text>
+
+        <!-- Block 2: Snapshot Inicial -->
+        <rect x="325" y="50" width="220" height="75" rx="6" fill="#F0FDF4" stroke="#86EFAC"/>
+        <text x="335" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#065F46">Snapshot 1 (Baseline Full)</text>
+        <text x="335" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#047857">Grava 100% dos blocos alocados</text>
+        <text x="335" y="106" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Armazenado internamente no S3</text>
+
+        <!-- Arrow -->
+        <path d="M 555 87 L 615 87" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+        <text x="585" y="78" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#047857" text-anchor="middle">Nova alteração</text>
+
+        <!-- Block 3: Snapshot Incremental -->
+        <rect x="625" y="50" width="225" height="75" rx="6" fill="#F0FDF4" stroke="#86EFAC"/>
+        <text x="635" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#065F46">Snapshot 2 (Incremental)</text>
+        <text x="635" y="88" font-family="system-ui, sans-serif" font-size="10" fill="#047857">Salva apenas blocos alterados</text>
+        <text x="635" y="106" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Custo proporcional aos deltas</text>
+    </g>
+</svg>

@@ -172,3 +172,156 @@ resource "aws_key_pair" "this" {
 ### Decisão Arquitetural do Projeto NSSE
 - **Acesso Primário**: O acesso interativo dos desenvolvedores às máquinas EC2 é realizado via **AWS Systems Manager (SSM) Session Manager**. Não há portas SSH (porta 22) abertas na Internet e nenhum Security Group autoriza tráfego SSH externo.
 - **Função da Key Pair**: Mantemos a chave associada às instâncias no *Launch Template* como **mecanismo de contingência (fallback)**. Caso o agente SSM pare de responder ou ocorra falha de rede interna, uma sessão de resgate pode ser configurada sem a necessidade de reconstruir os discos da máquina.
+
+
+
+---
+
+## 5. Blocos Dinâmicos (Dynamic Blocks)
+
+No desenvolvimento de infraestrutura como código com Terraform, é comum encontrar recursos que contêm múltiplos blocos de configuração aninhados repetitivos (*nested configuration blocks*), tais como regras de entrada e saída em Security Groups, tags dinâmicas ou filtros de aprovação em baselines de patching.
+
+Sem blocos dinâmicos, o engenheiro é forçado a copiar e colar o mesmo bloco dezenas de vezes, ferindo o princípio fundamental **DRY (*Don't Repeat Yourself*)**. O construto `dynamic` resolve esse problema gerando blocos aninhados programaticamente a partir de uma coleção iterável.
+
+![Funcionamento de Dynamic Blocks no Terraform](images/tf-dynamic-blocks-concept.svg)
+
+### Diferença Conceitual: `resource for_each` vs. `dynamic block`
+
+É fundamental não confundir o uso de `for_each` no cabeçalho de um recurso com um bloco `dynamic`:
+
+- **`for_each` em um `resource`**: Instancia **múltiplos recursos independentes** na nuvem (ex: criar 3 instâncias EC2 ou 4 sub-redes distintas). Cada item possui seu próprio ciclo de vida e identificador no estado do Terraform (`aws_subnet.public["subnet_a"]`, `aws_subnet.public["subnet_b"]`).
+- **`dynamic` dentro de um `resource`**: Gera **múltiplos sub-blocos internos** dentro de **uma única instância de recurso** (ex: 5 regras `ingress` dentro de um único `aws_security_group`, ou múltiplos `approval_rule` dentro de um `aws_ssm_patch_baseline`).
+
+### Anatomia e Sintaxe de um Dynamic Block
+
+Um bloco dinâmico é composto por quatro elementos fundamentais:
+
+```hcl
+dynamic "nome_do_bloco" {
+  for_each = var.colecao_de_dados # Lista, conjunto ou mapa iterável
+  iterator = item                 # (Opcional) Nome da variável de iteração. O padrão é o nome do próprio bloco
+  
+  content {
+    # Mapeamento dos atributos internos usando o iterator
+    atributo_1 = item.value.campo_1
+    atributo_2 = item.value.campo_2
+  }
+}
+```
+
+1. **Rótulo do Bloco (`"nome_do_bloco"`)**: O nome exato do bloco aninhado que o recurso da AWS espera (ex: `"ingress"`, `"egress"`, `"tag"`, `"approval_rule"`);
+2. **`for_each`**: A coleção (lista de objetos, conjunto ou mapa) que ditará quantas vezes o bloco será reproduzido;
+3. **`iterator` (Opcional)**: Nome personalizado para a variável que representa o item corrente. Caso seja omitido, o Terraform utiliza automaticamente o próprio rótulo do bloco (ex: `ingress.value`);
+4. **`content`**: O corpo do bloco onde os atributos internos são preenchidos dinamicamente acessando `<iterator>.value.<chave>`.
+
+---
+
+### Exemplo 1: Regras Repetitivas de Ingress em Security Groups
+
+#### Abordagem Tradicional (Verbosa e Estática)
+```hcl
+resource "aws_security_group" "web" {
+  name   = "web-server-sg"
+  vpc_id = var.vpc_id
+
+  # Código repetitivo e difícil de manter
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+}
+```
+
+#### Abordagem Moderna com `dynamic "ingress"`
+```hcl
+# Em variables.tf
+variable "ingress_rules" {
+  description = "Lista de portas e regras de entrada autorizadas"
+  type = list(object({
+    port        = number
+    protocol    = string
+    cidr_blocks = list(string)
+    description = string
+  }))
+  default = [
+    { port = 80,   protocol = "tcp", cidr_blocks = ["0.0.0.0/0"],   description = "HTTP Public" },
+    { port = 443,  protocol = "tcp", cidr_blocks = ["0.0.0.0/0"],   description = "HTTPS Public" },
+    { port = 8080, protocol = "tcp", cidr_blocks = ["10.0.0.0/16"], description = "App Port Interna" }
+  ]
+}
+
+# Em security-group.tf
+resource "aws_security_group" "web" {
+  name   = "web-server-sg"
+  vpc_id = var.vpc_id
+
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+  }
+}
+```
+
+---
+
+### Exemplo 2: Dynamic Blocks Aninhados (*Nested*) no Projeto NSSE
+
+Um dos padrões mais elegantes de engenharia em Terraform é a combinação de **dynamic blocks aninhados**, onde um bloco dinâmico reside dentro de outro bloco dinâmico. 
+
+No módulo [server/ssm.patching.baseline.tf](file:///home/guilermiii/github/nsse-iac/server/ssm.patching.baseline.tf) deste repositório, esse recurso foi aplicado para configurar as regras e os filtros de pacotes de segurança do Debian 12:
+
+```hcl
+resource "aws_ssm_patch_baseline" "this" {
+  name                                 = "DebianProductionBaseLine"
+  description                          = "Patch Baseline for Debian Production Environment"
+  operating_system                     = "DEBIAN"
+  approved_patches_enable_non_security = false
+
+  # 1º Nível Dinâmico: Itera sobre a lista de regras de aprovação
+  dynamic "approval_rule" {
+    for_each = var.debian_production_patch_baseline
+
+    content {
+      approve_after_days = approval_rule.value.approve_after_days
+      compliance_level   = approval_rule.value.compliance_level
+
+      # 2º Nível Dinâmico Aninhado: Itera sobre os filtros de pacotes de cada regra
+      dynamic "patch_filter" {
+        for_each = approval_rule.value.patch_filters
+
+        content {
+          key    = patch_filter.value.key
+          values = patch_filter.value.values
+        }
+      }
+    }
+  }
+}
+```
+
+### Boas Práticas e Recomendações
+- **Não abuse de Dynamic Blocks**: Utilize-os principalmente ao construir módulos reutilizáveis e genéricos ou quando as configurações forem fornecidas via variáveis externas. Se um recurso requer apenas um ou dois blocos estáticos e bem conhecidos, escrevê-los diretamente é mais legível para a equipe.
+- **Use `iterator` em Blocos Aninhados**: Ao trabalhar com múltiplos níveis de `dynamic` aninhados ou com nomes de blocos longos, explicitar `iterator = rule` ou `iterator = filter` evita conflitos de nomes e torna a leitura do código evidente.

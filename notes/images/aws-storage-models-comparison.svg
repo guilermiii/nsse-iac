@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <linearGradient id="awsRed" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#EF4444"/>
+            <stop offset="100%" stop-color="#B91C1C"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="960" height="540" fill="#F8FAFC" rx="12"/>
+    <text x="480" y="42" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">Modelos de Armazenamento na AWS: Comparativo Arquitetural</text>
+    <text x="480" y="68" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Diferenças fundamentais de interface, persistência, latência e casos de uso</text>
+
+    <!-- Column 1: Instance Store -->
+    <g transform="translate(40, 95)">
+        <rect width="205" height="415" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="205" height="42" rx="10" fill="#FEE2E2"/>
+        <text x="102" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#B91C1C" text-anchor="middle">⚡ Instance Store</text>
+        <text x="102" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#64748B" text-anchor="middle">EFÊMERO / FÍSICO</text>
+
+        <!-- Attribute box 1 -->
+        <rect x="12" y="72" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="88" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">LOCALIZAÇÃO:</text>
+        <text x="20" y="104" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">No mesmo host físico</text>
+        <text x="20" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">(NVMe / SSD direto)</text>
+
+        <!-- Attribute box 2 -->
+        <rect x="12" y="134" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="150" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERSISTÊNCIA:</text>
+        <text x="20" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#DC2626">Efêmero (Volátil)</text>
+        <text x="20" y="180" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Perde dados no Stop/Term</text>
+
+        <!-- Attribute box 3 -->
+        <rect x="12" y="196" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="212" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERFORMANCE:</text>
+        <text x="20" y="228" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#059669">Latência Sub-ms</text>
+        <text x="20" y="242" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Milhões de IOPS</text>
+
+        <!-- Attribute box 4 -->
+        <rect x="12" y="258" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="274" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">CONCORRÊNCIA:</text>
+        <text x="20" y="290" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">Exclusivo (1:1)</text>
+        <text x="20" y="304" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Apenas a instância local</text>
+
+        <!-- Casos de Uso -->
+        <rect x="12" y="322" width="181" height="80" rx="6" fill="#FEF2F2" stroke="#FECACA"/>
+        <text x="20" y="340" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#991B1B">CASOS DE USO:</text>
+        <text x="20" y="358" font-family="system-ui, sans-serif" font-size="10" fill="#7F1D1D">• Caches (Redis/Memcached)</text>
+        <text x="20" y="374" font-family="system-ui, sans-serif" font-size="10" fill="#7F1D1D">• Buffers e Scratch spaces</text>
+        <text x="20" y="390" font-family="system-ui, sans-serif" font-size="10" fill="#7F1D1D">• Nós réplica NoSQL</text>
+    </g>
+
+    <!-- Column 2: Amazon EBS -->
+    <g transform="translate(265, 95)">
+        <rect width="205" height="415" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="205" height="42" rx="10" fill="#FFEDD5"/>
+        <text x="102" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#C2410C" text-anchor="middle">📦 Amazon EBS</text>
+        <text x="102" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#64748B" text-anchor="middle">BLOCK STORAGE</text>
+
+        <!-- Attribute box 1 -->
+        <rect x="12" y="72" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="88" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">LOCALIZAÇÃO:</text>
+        <text x="20" y="104" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">Rede interna (SAN)</text>
+        <text x="20" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Confinado na mesma AZ</text>
+
+        <!-- Attribute box 2 -->
+        <rect x="12" y="134" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="150" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERSISTÊNCIA:</text>
+        <text x="20" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#059669">Persistente (Independente)</text>
+        <text x="20" y="180" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Sobrevive a stop/terminate</text>
+
+        <!-- Attribute box 3 -->
+        <rect x="12" y="196" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="212" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERFORMANCE:</text>
+        <text x="20" y="228" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0284C7">Baixa Latência (ms)</text>
+        <text x="20" y="242" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Configurável: gp3 / io2</text>
+
+        <!-- Attribute box 4 -->
+        <rect x="12" y="258" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="274" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">CONCORRÊNCIA:</text>
+        <text x="20" y="290" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">Típico 1:1</text>
+        <text x="20" y="304" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">(Multi-Attach com io1/io2)</text>
+
+        <!-- Casos de Uso -->
+        <rect x="12" y="322" width="181" height="80" rx="6" fill="#FFF7ED" stroke="#FED7AA"/>
+        <text x="20" y="340" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#9A3412">CASOS DE USO:</text>
+        <text x="20" y="358" font-family="system-ui, sans-serif" font-size="10" fill="#7C2D12">• Disco Raiz de SO (Boot)</text>
+        <text x="20" y="374" font-family="system-ui, sans-serif" font-size="10" fill="#7C2D12">• Bancos Relacionais (RDBMS)</text>
+        <text x="20" y="390" font-family="system-ui, sans-serif" font-size="10" fill="#7C2D12">• Volumes transacionais</text>
+    </g>
+
+    <!-- Column 3: Amazon EFS / FSx -->
+    <g transform="translate(490, 95)">
+        <rect width="205" height="415" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="205" height="42" rx="10" fill="#E0F2FE"/>
+        <text x="102" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#0369A1" text-anchor="middle">📂 Amazon EFS / FSx</text>
+        <text x="102" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#64748B" text-anchor="middle">FILE STORAGE (REDE)</text>
+
+        <!-- Attribute box 1 -->
+        <rect x="12" y="72" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="88" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">LOCALIZAÇÃO:</text>
+        <text x="20" y="104" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">Multi-AZ Gerenciado</text>
+        <text x="20" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Protocolos: NFSv4 / SMB</text>
+
+        <!-- Attribute box 2 -->
+        <rect x="12" y="134" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="150" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERSISTÊNCIA:</text>
+        <text x="20" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#059669">Persistente &amp; Elástico</text>
+        <text x="20" y="180" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Cresce e encolhe sozinho</text>
+
+        <!-- Attribute box 3 -->
+        <rect x="12" y="196" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="212" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERFORMANCE:</text>
+        <text x="20" y="228" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#475569">Latência Moderada (ms)</text>
+        <text x="20" y="242" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Throughput elástico escalável</text>
+
+        <!-- Attribute box 4 -->
+        <rect x="12" y="258" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="274" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">CONCORRÊNCIA:</text>
+        <text x="20" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0284C7">Multi-Instância (N:N)</text>
+        <text x="20" y="304" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Centenas de nós simultâneos</text>
+
+        <!-- Casos de Uso -->
+        <rect x="12" y="322" width="181" height="80" rx="6" fill="#F0F9FF" stroke="#BAE6FD"/>
+        <text x="20" y="340" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#0369A1">CASOS DE USO:</text>
+        <text x="20" y="358" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• CMS e Web Clusters (WordPress)</text>
+        <text x="20" y="374" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• Shared Storage para EKS / ECS</text>
+        <text x="20" y="390" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• Home directories compartilhados</text>
+    </g>
+
+    <!-- Column 4: Amazon S3 -->
+    <g transform="translate(715, 95)">
+        <rect width="205" height="415" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="205" height="42" rx="10" fill="#D1FAE5"/>
+        <text x="102" y="26" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#047857" text-anchor="middle">🪣 Amazon S3</text>
+        <text x="102" y="58" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#64748B" text-anchor="middle">OBJECT STORAGE</text>
+
+        <!-- Attribute box 1 -->
+        <rect x="12" y="72" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="88" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">LOCALIZAÇÃO:</text>
+        <text x="20" y="104" font-family="system-ui, sans-serif" font-size="11" fill="#0F172A">Global / Regional</text>
+        <text x="20" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">API REST via HTTP(S)</text>
+
+        <!-- Attribute box 2 -->
+        <rect x="12" y="134" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="150" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERSISTÊNCIA:</text>
+        <text x="20" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#059669">99.999999999% (11 9s)</text>
+        <text x="20" y="180" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Alta durabilidade e réplicas</text>
+
+        <!-- Attribute box 3 -->
+        <rect x="12" y="196" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="212" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">PERFORMANCE:</text>
+        <text x="20" y="228" font-family="system-ui, sans-serif" font-size="11" fill="#475569">Throughput Massivo</text>
+        <text x="20" y="242" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Latência de dezenas de ms</text>
+
+        <!-- Attribute box 4 -->
+        <rect x="12" y="258" width="181" height="54" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="20" y="274" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#475569">CONCORRÊNCIA:</text>
+        <text x="20" y="290" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#059669">Ilimitada / Universal</text>
+        <text x="20" y="304" font-family="system-ui, sans-serif" font-size="10" fill="#64748B">Acesso web mundial</text>
+
+        <!-- Casos de Uso -->
+        <rect x="12" y="322" width="181" height="80" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+        <text x="20" y="340" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#065F46">CASOS DE USO:</text>
+        <text x="20" y="358" font-family="system-ui, sans-serif" font-size="10" fill="#064E3B">• Data Lake e Analytics</text>
+        <text x="20" y="374" font-family="system-ui, sans-serif" font-size="10" fill="#064E3B">• Backups &amp; Compliance (LGPD)</text>
+        <text x="20" y="390" font-family="system-ui, sans-serif" font-size="10" fill="#064E3B">• Logs, Mídia e Static Assets</text>
+    </g>
+</svg>

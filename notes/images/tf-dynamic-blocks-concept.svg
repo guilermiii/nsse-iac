@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="100%" height="100%">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1E293B"/>
+            <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+        <linearGradient id="awsOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF9900"/>
+            <stop offset="100%" stop-color="#E88200"/>
+        </linearGradient>
+        <linearGradient id="awsBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+        </linearGradient>
+        <linearGradient id="awsGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="awsPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#6D28D9"/>
+        </linearGradient>
+        <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#0F172A"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" />
+        </marker>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="920" height="520" fill="#F8FAFC" rx="12"/>
+    <text x="460" y="42" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">Terraform: Funcionamento de Blocos Dinâmicos (Dynamic Blocks)</text>
+    <text x="460" y="68" font-family="system-ui, sans-serif" font-size="14" fill="#64748B" text-anchor="middle">Eliminação de código repetitivo através da geração programática de blocos aninhados</text>
+
+    <!-- Card 1: Input Collection -->
+    <g transform="translate(45, 95)">
+        <rect width="250" height="235" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="250" height="35" rx="10" fill="#F1F5F9"/>
+        <text x="125" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">1. Dados de Entrada (Coleção)</text>
+
+        <rect x="15" y="48" width="220" height="170" rx="6" fill="#1E293B"/>
+        <text x="25" y="68" font-family="monospace" font-size="10" fill="#94A3B8"># Lista ou mapa de objetos</text>
+        <text x="25" y="86" font-family="monospace" font-size="10" fill="#F8FAFC">rules = [</text>
+        <text x="35" y="104" font-family="monospace" font-size="10" fill="#38BDF8">  { port = 80,  proto = "tcp" },</text>
+        <text x="35" y="122" font-family="monospace" font-size="10" fill="#38BDF8">  { port = 443, proto = "tcp" },</text>
+        <text x="35" y="140" font-family="monospace" font-size="10" fill="#38BDF8">  { port = 22,  proto = "tcp" }</text>
+        <text x="25" y="158" font-family="monospace" font-size="10" fill="#F8FAFC">]</text>
+        <text x="25" y="185" font-family="system-ui, sans-serif" font-size="9" fill="#94A3B8">Centralizado em variables.tf</text>
+        <text x="25" y="202" font-family="system-ui, sans-serif" font-size="9" fill="#94A3B8">ou terraform.tfvars</text>
+    </g>
+
+    <!-- Arrow 1 to 2 -->
+    <path d="M 300 210 L 335 210" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Card 2: Dynamic Block Syntax -->
+    <g transform="translate(340, 95)">
+        <rect width="260" height="235" rx="10" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="260" height="35" rx="10" fill="#EDE9FE"/>
+        <text x="130" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6D28D9" text-anchor="middle">2. O Construto "dynamic"</text>
+
+        <rect x="15" y="48" width="230" height="170" rx="6" fill="#1E293B"/>
+        <text x="25" y="68" font-family="monospace" font-size="10" fill="#C084FC">dynamic "ingress" {</text>
+        <text x="35" y="88" font-family="monospace" font-size="10" fill="#F8FAFC">  for_each = var.rules</text>
+        <text x="35" y="110" font-family="monospace" font-size="10" fill="#C084FC">  content {</text>
+        <text x="45" y="128" font-family="monospace" font-size="10" fill="#94A3B8">    from_port = ingress.value.port</text>
+        <text x="45" y="146" font-family="monospace" font-size="10" fill="#94A3B8">    to_port   = ingress.value.port</text>
+        <text x="45" y="164" font-family="monospace" font-size="10" fill="#94A3B8">    protocol  = ingress.value.proto</text>
+        <text x="35" y="184" font-family="monospace" font-size="10" fill="#C084FC">  }</text>
+        <text x="25" y="204" font-family="monospace" font-size="10" fill="#C084FC">}</text>
+    </g>
+
+    <!-- Arrow 2 to 3 -->
+    <path d="M 605 210 L 640 210" stroke="#10B981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+    <!-- Card 3: Generated Blocks -->
+    <g transform="translate(645, 95)">
+        <rect width="230" height="235" rx="10" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="230" height="35" rx="10" fill="#DCFCE7"/>
+        <text x="115" y="23" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#15803D" text-anchor="middle">3. Blocos Compilados (DRY)</text>
+
+        <!-- Block item 1 -->
+        <rect x="15" y="48" width="200" height="48" rx="5" fill="#F0FDF4" stroke="#86EFAC"/>
+        <text x="25" y="66" font-family="monospace" font-size="10" font-weight="bold" fill="#166534">ingress { port: 80 }</text>
+        <text x="25" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#15803D">Item 1 gerado automaticamente</text>
+
+        <!-- Block item 2 -->
+        <rect x="15" y="104" width="200" height="48" rx="5" fill="#F0FDF4" stroke="#86EFAC"/>
+        <text x="25" y="122" font-family="monospace" font-size="10" font-weight="bold" fill="#166534">ingress { port: 443 }</text>
+        <text x="25" y="138" font-family="system-ui, sans-serif" font-size="9" fill="#15803D">Item 2 gerado automaticamente</text>
+
+        <!-- Block item 3 -->
+        <rect x="15" y="160" width="200" height="48" rx="5" fill="#F0FDF4" stroke="#86EFAC"/>
+        <text x="25" y="178" font-family="monospace" font-size="10" font-weight="bold" fill="#166534">ingress { port: 22 }</text>
+        <text x="25" y="194" font-family="system-ui, sans-serif" font-size="9" fill="#15803D">Item 3 gerado automaticamente</text>
+    </g>
+
+    <!-- Bottom Comparative Box -->
+    <g transform="translate(45, 350)">
+        <rect width="830" height="145" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" filter="url(#shadow)"/>
+        <rect width="830" height="32" rx="10" fill="#F8FAFC"/>
+        <text x="20" y="21" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#334155">⚖️ Diferença Essencial: "for_each" no Recurso vs. "dynamic" dentro do Recurso</text>
+
+        <rect x="20" y="44" width="385" height="85" rx="6" fill="#F0F9FF" stroke="#BAE6FD"/>
+        <text x="30" y="64" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0369A1">resource "aws_subnet" "public" { for_each = ... }</text>
+        <text x="30" y="84" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• Cria <tspan font-weight="bold">MÚLTIPLOS RECURSOS INDEPENDENTES</tspan> na nuvem.</text>
+        <text x="30" y="102" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• Cada item tem seu próprio identificador e ciclo de vida no tfstate.</text>
+        <text x="30" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#0C4A6E">• Exemplo: Criar 3 sub-redes em diferentes AZs.</text>
+
+        <rect x="425" y="44" width="385" height="85" rx="6" fill="#F5F3FF" stroke="#DDD6FE"/>
+        <text x="435" y="64" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#6D28D9">resource "aws_security_group" { dynamic "ingress" { ... } }</text>
+        <text x="435" y="84" font-family="system-ui, sans-serif" font-size="10" fill="#5B21B6">• Cria <tspan font-weight="bold">UM ÚNICO RECURSO</tspan> contendo múltiplos sub-blocos internos.</text>
+        <text x="435" y="102" font-family="system-ui, sans-serif" font-size="10" fill="#5B21B6">• Os blocos internos não são recursos isolados; pertencem ao pai.</text>
+        <text x="435" y="118" font-family="system-ui, sans-serif" font-size="10" fill="#5B21B6">• Exemplo: N regras de firewall ou N filtros de patch baseline.</text>
+    </g>
+</svg>
