@@ -11,6 +11,11 @@ variable "tags" {
   })
 }
 
+variable "patch_group" {
+  type = string
+  default = "Production"
+}
+
 variable "assume_role" {
   type = object({
     arn         = string
